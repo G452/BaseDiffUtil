@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
      * 添加一条
      **/
     fun addItem(view: View) {
-        //计算出一个随机的计算位置。
+        //计算出一个随机的添加位置。
         val nextInt = Random().nextInt(mDataList.size)
         //添加进去
         mDataList.add(nextInt, MainBean("测试添加----", mDataList.size + 1, false))
