@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         mRecyclerView.layoutManager = LinearLayoutManager(this)
         mainAdapter = MainAdapter(this)
+        lifecycle.addObserver(mainAdapter)//注册lifecycle监听生命周期
         mRecyclerView.adapter = mainAdapter
         initList()
         //单击
@@ -101,13 +102,4 @@ class MainActivity : AppCompatActivity() {
         mDataList = BaseRecycleAdapter.getConvertList(mNewList)
         mainAdapter.updataListData(mDataList)
     }
-
-    /**
-     * 销毁资源， 可配合Lifecycle 感应生命周期
-     **/
-    override fun onDestroy() {
-        super.onDestroy()
-        mainAdapter.onDestroy()
-    }
-
 }

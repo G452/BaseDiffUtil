@@ -1,11 +1,15 @@
 package com.example.gbasediffutil.base;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.OnLifecycleEvent;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -16,7 +20,7 @@ import java.util.List;
  * time：2021/1/20 9:44
  * about：BaseRecycleAdapter
  **/
-public abstract class BaseRecycleAdapter<T> extends RecyclerView.Adapter<BaseViewHolder> {
+public abstract class BaseRecycleAdapter<T> extends RecyclerView.Adapter<BaseViewHolder> implements LifecycleObserver {
 
 
     protected List<T> list = new ArrayList<>();
@@ -202,7 +206,12 @@ public abstract class BaseRecycleAdapter<T> extends RecyclerView.Adapter<BaseVie
         onDestroy();
     }
 
+    /**
+     * 监听页面生命周期 为ondestory时释放资源
+     **/
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     public void onDestroy() {
+        Log.d("测试OnLifecycleEvent", "sadasdas");
         mAdapterHelper.onDestroy();
     }
 
